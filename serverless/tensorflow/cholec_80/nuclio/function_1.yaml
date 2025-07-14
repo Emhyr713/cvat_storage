@@ -1,0 +1,96 @@
+metadata:
+  name: yolov8-segmentation
+  namespace: cvat
+  # annotations:
+  #   name: YOLOv8 Segmentation via Ultralytics
+  #   type: segmenter
+  #   framework: pytorch
+  annotations:
+    type: interactor
+    framework: pytorch
+    min_pos_points: "3"
+    min_neg_points: "0"
+    help_message: "YOLO‑Seg segmentation interactor"
+    spec: |
+      [
+        { "id": 0,  "name": "Black Background" },
+        { "id": 1,  "name": "Abdominal Wall" },
+        { "id": 2,  "name": "Liver" },
+        { "id": 3,  "name": "Gastrointestinal Tract" },
+        { "id": 4,  "name": "Fat" },
+        { "id": 5,  "name": "Grasper" },
+        { "id": 6,  "name": "Connective Tissue" },
+        { "id": 7,  "name": "Blood" },
+        { "id": 8,  "name": "Cystic Duct" },
+        { "id": 9,  "name": "L-hook Electrocautery" },
+        { "id": 10, "name": "Gallbladder" },
+        { "id": 11, "name": "Hepatic Vein" },
+        { "id": 12, "name": "Liver Ligament" }
+      ]
+
+spec:
+  description: YOLOv8 segmentation model via Ultralytics
+  runtime: 'python:3.9'
+  handler: main:handler
+  eventTimeout: 30s
+
+  build:
+    image: cvat.yolov8.segmentation.interactor
+    # baseImage: tensorflow/tensorflow:2.12.0
+    baseImage: cvat.yolov8.segmentation
+    # baseImage: python:3.9-slim
+
+    directives:
+
+      
+      preCopy:
+        - kind: RUN
+          value: mkdir -p /opt/nuclio
+        - kind: WORKDIR
+          value: /opt/nuclio
+      # postCopy:
+      #   - kind: COPY
+      #     # value: best.pt /opt/nuclio/best.pt
+      #     value: nuclio/best.pt /opt/nuclio/best.pt
+
+
+      # preCopy:
+
+
+      #   - kind: RUN
+      #     value: |
+      #       apt-get update && apt-get install -y curl python3-pip libgl1 
+
+      #   # Добавил
+      #   - kind: RUN
+      #     value: mkdir -p /opt/nuclio/whl
+      #   - kind: RUN
+      #     value: pip download --dest /opt/nuclio/whl nuclio-sdk==0.5.0 msgpack==1.0.2
+
+
+
+
+      #   - kind: WORKDIR
+      #     value: /opt/nuclio
+
+      # postCopy:
+      #   - kind: RUN
+      #     value: |
+      #       pip install --upgrade pip
+      #   - kind: RUN
+      #     value: |
+      #       pip install pillow ultralytics opencv-python dill
+
+  triggers:
+    http:
+      maxWorkers: 2
+      kind: 'http'
+      attributes:
+        maxRequestBodySize: 33554432
+
+  platform:
+    attributes:
+      restartPolicy:
+        name: always
+        maximumRetryCount: 3
+      mountMode: volume

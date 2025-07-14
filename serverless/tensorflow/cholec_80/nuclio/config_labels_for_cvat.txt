@@ -1,0 +1,67 @@
+[
+  {
+    "name": "Black Background",
+    "type": "any",
+    "attributes": []
+  },
+  {
+    "name": "Abdominal Wall",
+    "type": "any",
+    "attributes": []
+  },
+  {
+    "name": "Liver",
+    "type": "any",
+    "attributes": []
+  },
+  {
+    "name": "Gastrointestinal Tract",
+    "type": "any",
+    "attributes": []
+  },
+  {
+    "name": "Fat",
+    "type": "any",
+    "attributes": []
+  },
+  {
+    "name": "Grasper",
+    "type": "any",
+    "attributes": []
+  },
+  {
+    "name": "Connective Tissue",
+    "type": "any",
+    "attributes": []
+  },
+  {
+    "name": "Blood",
+    "type": "any",
+    "attributes": []
+  },
+  {
+    "name": "Cystic Duct",
+    "type": "any",
+    "attributes": []
+  },
+  {
+    "name": "L-hook Electrocautery",
+    "type": "any",
+    "attributes": []
+  },
+  {
+    "name": "Gallbladder",
+    "type": "any",
+    "attributes": []
+  },
+  {
+    "name": "Hepatic Vein",
+    "type": "any",
+    "attributes": []
+  },
+  {
+    "name": "Liver Ligament",
+    "type": "any",
+    "attributes": []
+  }
+]
