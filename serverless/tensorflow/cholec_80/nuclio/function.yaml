@@ -37,8 +37,8 @@ spec:
   build:
     image: cvat.yolov8.segmentation.interactor
     # baseImage: tensorflow/tensorflow:2.12.0
-    # baseImage: cvat.yolov8.segmentation
-    baseImage: cvat.yolov8.segmentation_gpu
+    baseImage: cvat.yolov8.segmentation
+    # baseImage: cvat.yolov8.segmentation_gpu
     # baseImage: python:3.9-slim
 
     directives:
